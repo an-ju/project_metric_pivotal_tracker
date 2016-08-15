@@ -1,3 +1,5 @@
+require 'tracker_api'
+
 class ProjectMetricPivotalTracker
   attr_reader :raw_data
 

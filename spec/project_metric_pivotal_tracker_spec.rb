@@ -1,5 +1,5 @@
 require 'project_metric_pivotal_tracker'
-require 'tracker_api'
+
 describe ProjectMetricPivotalTracker, :vcr do
   let(:raw_data){nil}
   let(:subject){ProjectMetricPivotalTracker.new({project: '742821' , token: ENV["PIVOTAL_TRACKER_API_TOKEN"]}, raw_data)}

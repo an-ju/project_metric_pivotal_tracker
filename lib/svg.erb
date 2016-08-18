@@ -1,10 +1,10 @@
-<svg width="<%=@total_length%>" height="<%=@total_height%>">
-  <rect x="0" y="0" width="<%=@green_length%>" height="20" style="fill:green;stroke:black">
+<svg width="<%= @total_length %>" height="<%= @total_height %>">
+  <rect x="0" y="0" width="<%= @green_length %>" height="20" style="fill:green;stroke:black">
   </rect>
-  <rect x="<%=@green_length%>" y="0" width="<%=@yellow_length%>" height="20" style="fill:yellow;stroke:black">
+  <rect x="<%= @green_length %>" y="0" width="<%= @yellow_length %>" height="20" style="fill:yellow;stroke:black">
   </rect>
-  <rect x="<%=@green_length+@yellow_length%>" y="0" width="<%=@red_length%>" height="20" style="fill:red;stroke:black">
+  <rect x="<%= @green_length+@yellow_length %>" y="0" width="<%= @red_length %>" height="20" style="fill:red;stroke:black">
   </rect>
-  <rect x="<%=@green_length+@yellow_length+@red_length%>" y="0" width="<%=@gray_length%>" height="20" style="fill:darkgrey;stroke:black">
+  <rect x="<%= @green_length+@yellow_length+@red_length %>" y="0" width="<%= @gray_length %>" height="20" style="fill:darkgrey;stroke:black">
   </rect>
 </svg>

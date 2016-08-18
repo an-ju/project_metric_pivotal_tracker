@@ -5,7 +5,7 @@ class ProjectMetricPivotalTracker
 
   def initialize(credentials, raw_data=nil)
     @project = credentials[:project]
-    @client = TrackerApi::Client.new(token: ENV['PIVOTAL_TRACKER_API_TOKEN'])
+    @client = TrackerApi::Client.new(token: credentials[:token])
     @raw_data = raw_data
   end
 

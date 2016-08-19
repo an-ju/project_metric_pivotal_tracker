@@ -5,7 +5,7 @@ class ProjectMetricPivotalTracker
 
   def initialize(credentials, raw_data=nil)
     @project = credentials[:project]
-    @client = TrackerApi::Client.new(token: ENV['PIVOTAL_TRACKER_API_TOKEN'])
+    @client = TrackerApi::Client.new(token: credentials[:token])
     @raw_data = raw_data
   end
 
@@ -47,7 +47,7 @@ class ProjectMetricPivotalTracker
     @red_length = (60*(@raw_data[:old]/@raw_data[:total].to_f)).floor
     @gray_length = (60*(@raw_data[:older]/@raw_data[:total].to_f)).floor
     pixels_left_over = @total_length - (@green_length+@yellow_length+@red_length+@gray_length)
-    sorted_lengths = {:@green_length => @green_length, :@yellow_length => @yellow_length, :@red_length => @red_length, :@gray_length => @gray_length}.sort_by{|k,v| v}
+    sorted_lengths = {:@green_length => @green_length, :@yellow_length => @yellow_length, :@red_length => @red_length, :@gray_length => @gray_length}.sort_by { |k, v| v }
     pixels_left_over.times do |i|
       instance_variable_set(sorted_lengths[i][0], instance_variable_get(sorted_lengths[i][0])+1)
     end

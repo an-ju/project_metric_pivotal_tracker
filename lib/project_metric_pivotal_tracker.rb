@@ -39,7 +39,7 @@ class ProjectMetricPivotalTracker
   end
 
   def self.credentials
-    ['project', 'token']
+    [:project, :token]
   end
 
 

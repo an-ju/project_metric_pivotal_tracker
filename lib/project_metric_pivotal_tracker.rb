@@ -38,6 +38,11 @@ class ProjectMetricPivotalTracker
     @score ||= (@raw_data[:done] + @raw_data[:new] * 0.5 + @raw_data[:old] * 0.25)/ (@raw_data[:total])
   end
 
+  def self.credentials
+    [:project, :token]
+  end
+
+
   private
   def calculate_color_lengths
     @total_length = 60

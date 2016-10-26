@@ -25,6 +25,7 @@ GEM
     ice_nine (0.11.2)
     multi_json (1.12.1)
     multipart-post (2.0.0)
+    rake (11.3.0)
     representable (3.0.0)
       declarative (~> 0.0.5)
       uber (~> 0.0.15)
@@ -68,6 +69,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  rake
   rspec
   tracker_api (~> 0.2.0)
   vcr

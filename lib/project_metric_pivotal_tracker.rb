@@ -27,6 +27,7 @@ class ProjectMetricPivotalTracker
   end
 
   def json
+    refresh unless @raw_data
     {
       :done => @raw_data[:done]
       :done_percentage = @raw_data[:done] / @raw_data[:total]

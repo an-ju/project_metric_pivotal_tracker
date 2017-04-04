@@ -12,9 +12,18 @@ class ProjectMetricPivotalTracker
   def image
     return @image if @image
     refresh unless @raw_data
-    calculate_color_lengths
-    file_path = File.join(File.dirname(__FILE__), 'svg.erb')
-    @image = ERB.new(File.read(file_path)).result(self.send(:binding))
+    # calculate_color_lengths
+    # file_path = File.join(File.dirname(__FILE__), 'svg.erb')
+    # @image = ERB.new(File.read(file_path)).result(self.send(:binding))
+    {:chartType => 'column',
+     :titleText => 'Story Status',
+     :data => [{:name => 'Stories',
+                :data => [{:name => 'Accepted/Delivered/Finished', :y => @raw_data[:done]},
+                          {:name => 'In Progress', :y => @raw_data[:new]},
+                          {:name => 'Unstarted', :y => @raw_data[:old]},
+                          {:name => 'Unscheduled', :y => @raw_data[:older]}]
+               }]
+    }.to_json
   end
 
   def refresh

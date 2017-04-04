@@ -12,10 +12,34 @@ class ProjectMetricPivotalTracker
   def image
     return @image if @image
     refresh unless @raw_data
-    calculate_color_lengths
-    file_path = File.join(File.dirname(__FILE__), 'svg.erb')
-    @image = ERB.new(File.read(file_path)).result(self.send(:binding))
+    # calculate_color_lengths
+    # file_path = File.join(File.dirname(__FILE__), 'svg.erb')
+    # @image = ERB.new(File.read(file_path)).result(self.send(:binding))
+    {:chartType => 'column',
+     :titleText => 'Story Status',
+     :data => [{:name => 'Stories',
+                :data => [{:name => 'Accepted/Delivered/Finished', :y => @raw_data[:done]},
+                          {:name => 'In Progress', :y => @raw_data[:new]},
+                          {:name => 'Unstarted', :y => @raw_data[:old]},
+                          {:name => 'Unscheduled', :y => @raw_data[:older]}]
+               }]
+    }.to_json
   end
+
+  def json
+    {
+      :done => @raw_data[:done]
+      :done_percentage = @raw_data[:done] / @raw_data[:total]
+      :developing => @raw_data[:new]
+      :developing_percentage => @raw_data[:new] / @raw_data[:total]
+      :unstarted => @raw_data[:old]
+      :unstarted_percentage => @raw_data[:old] / @raw_data[:total]
+      :unscheduled => @raw_data[:older]
+      :unscheduled_percentage => @raw_data[:old] / @raw_data[:total]
+      :score => (@raw_data[:done] + @raw_data[:new] * 0.5 + @raw_data[:old] * 0.25)/ (@raw_data[:total])
+      :raw_data => @raw_data
+    }.to_json
+
 
   def refresh
     project = @client.project(@project)

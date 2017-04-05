@@ -18,14 +18,22 @@ class ProjectMetricPivotalTracker
     # @image = ERB.new(File.read(file_path)).result(self.send(:binding))
     {:chartType => 'column',
      :titleText => 'Story Status',
+     :raw_data => @raw_data,
      :data => [{:name => 'Stories',
-                :data => [{:name => 'Accepted/Delivered/Finished', :y => @raw_data[:done]},
-                          {:name => 'In Progress', :y => @raw_data[:new]},
+
+                :data => [{:name => 'Accepted', :y => @raw_data[:done]},
+                          {:name => 'Developing', :y => @raw_data[:new]},
                           {:name => 'Unstarted', :y => @raw_data[:old]},
                           {:name => 'Unscheduled', :y => @raw_data[:older]}]
                }]
     }.to_json
   end
+
+  def workload_evalute
+    projects = @client.projects[0]
+
+  end
+
 
   def json
     refresh unless @raw_data

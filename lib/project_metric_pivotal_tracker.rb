@@ -5,8 +5,10 @@ class ProjectMetricPivotalTracker
   attr_reader :raw_data
 
   def initialize(credentials, raw_data=nil)
-    @project = credentials[:project]
-    @client = TrackerApi::Client.new(token: credentials[:token])
+    # @project = credentials[:project]
+    @project = "https://www.pivotaltracker.com/n/projects/1886749"
+    @client = TrackerApi::Client.new(token: "5e5ad80a4740ef55f13b45933527ad66")
+    # @client = TrackerApi::Client.new(token: credentials[:token])
     @raw_data = raw_data
   end
 
@@ -60,6 +62,7 @@ class ProjectMetricPivotalTracker
     red += project.stories(with_state: :unstarted||:planned).size
     gray += project.stories(with_state: :unscheduled).size
     @raw_data = {done: green, new: yellow, old: red, older: gray, total: green+yellow+red+gray}
+    true
   end
 
   def raw_data= new

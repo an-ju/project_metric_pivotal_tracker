@@ -6,12 +6,6 @@ describe ProjectMetricPivotalTracker, :vcr do
   let(:subject) { ProjectMetricPivotalTracker.new({project: '742821', token: ENV["PIVOTAL_TRACKER_API_TOKEN"]}, raw_data) }
   let(:svg) { File.read './spec/data/sample.svg' }
 
-  context '::credentials' do
-     it 'includes exactly project and token' do
-       expect(described_class.credentials).to contain_exactly(:project, :token)
-     end
-   end
-
   context 'LocalSupport' do
     describe '#refresh' do
       it 'fetches raw data' do

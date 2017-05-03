@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'tracker_api', '~> 0.2.0'
+gem 'faraday', '~>0.1', '>=0.1.0.0'
 require 'json'
 group :test do
   gem 'rspec'

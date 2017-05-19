@@ -37,7 +37,7 @@ class ProjectMetricPivotalTracker
   end
   
   def self.credentials
-    ['tracker_project', 'tracker_token']
+    %I[tracker_project tracker_token]
   end
 
   private
